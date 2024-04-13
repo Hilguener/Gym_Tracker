@@ -17,29 +17,29 @@ val Cabin =
 val Typography =
     Typography(
         bodyLarge =
-        TextStyle(
-            fontFamily = Cabin,
-            fontWeight = FontWeight.Normal,
-            fontSize = 16.sp,
-            lineHeight = 24.sp,
-            letterSpacing = 0.5.sp,
-        ),
+            TextStyle(
+                fontFamily = Cabin,
+                fontWeight = FontWeight.Normal,
+                fontSize = 16.sp,
+                lineHeight = 24.sp,
+                letterSpacing = 0.5.sp,
+            ),
         displayLarge =
-        TextStyle(
-            fontFamily = Cabin,
-            fontWeight = FontWeight.Normal,
-            fontSize = 30.sp,
-        ),
+            TextStyle(
+                fontFamily = Cabin,
+                fontWeight = FontWeight.Normal,
+                fontSize = 30.sp,
+            ),
         displayMedium =
-        TextStyle(
-            fontFamily = Cabin,
-            fontWeight = FontWeight.Bold,
-            fontSize = 20.sp,
-        ),
+            TextStyle(
+                fontFamily = Cabin,
+                fontWeight = FontWeight.Bold,
+                fontSize = 20.sp,
+            ),
         displaySmall =
-        TextStyle(
-            fontFamily = Cabin,
-            fontWeight = FontWeight.Bold,
-            fontSize = 20.sp,
-        ),
+            TextStyle(
+                fontFamily = Cabin,
+                fontWeight = FontWeight.Bold,
+                fontSize = 20.sp,
+            ),
     )

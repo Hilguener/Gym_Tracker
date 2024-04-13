@@ -9,7 +9,8 @@ import androidx.compose.runtime.Composable
 
 @Composable
 fun PasswordVisibilityToggleIcon(
-    showPassword: Boolean, onTogglePasswordVisibility: () -> Unit
+    showPassword: Boolean,
+    onTogglePasswordVisibility: () -> Unit,
 ) {
     val image = if (showPassword) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
     val contentDescription = if (showPassword) "Hide password icon" else "Show password icon"
@@ -17,4 +18,3 @@ fun PasswordVisibilityToggleIcon(
         Icon(imageVector = image, contentDescription = contentDescription)
     }
 }
-
