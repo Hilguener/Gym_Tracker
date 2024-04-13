@@ -1,21 +1,57 @@
-# Add project specific ProGuard rules here.
-# You can control the set of applied configuration files using the
-# proguardFiles setting in build.gradle.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
+# Mantenha os membros das classes kotlin
+-keep class kotlin.** { *; }
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
+# Mantenha as classes de entidades de banco de dados Room
+-keep class com.hilguener.gymtracker.data.db.entity.** { *; }
 
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
+# Mantenha as classes dos DAOs Room
+-keep class com.hilguener.gymtracker.data.db.dao.** { *; }
 
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
+# Mantenha as classes dos repositórios
+-keep class com.hilguener.gymtracker.data.repository.** { *; }
+
+# Mantenha as classes de ViewModel
+-keep class com.hilguener.gymtracker.ui.viewmodel.** { *; }
+
+# Mantenha todas as classes de atividades
+-keep class com.hilguener.gymtracker.ui.activity.** { *; }
+
+# Mantenha as interfaces Parcelable
+-keep interface android.os.Parcelable
+
+# Mantenha as implementações do Creator
+-keep class * implements android.os.Parcelable$Creator {
+    *;
+}
+
+# Mantenha classes de modelos usadas para análise JSON
+-keep class com.hilguener.gymtracker.model.** { *; }
+
+# Mantenha as classes de utilitários
+-keep class com.hilguener.gymtracker.util.** { *; }
+
+# Mantenha as classes de constantes
+-keep class com.hilguener.gymtracker.constant.** { *; }
+
+# Mantenha as classes de custom views
+-keep class com.gymtracker.customview.** { *; }
+
+# Mantenha classes para manipulação de eventos de clicar
+-keep class com.gymtracker.clickhandler.** { *; }
+
+# Mantenha a classe de inicialização do aplicativo
+-keep class com.hilguener.gymtracker.MyApplication{ *; }
+
+# Mantenha as bibliotecas de terceiros
+-keep class com.squareup.picasso.** { *; }
+-keep class com.squareup.okhttp.** { *; }
+-keep class com.google.android.material.** { *; }
+-keep class androidx.lifecycle.** { *; }
+-keep class androidx.navigation.** { *; }
+-keep class androidx.paging.** { *; }
+
+# Mantenha as anotações personalizadas
+-keep @interface com.hilguener.gymtracker.customannotation.**
+
+# Evite a obfuscação das classes de serviços do Firebase
+-keep class com.google.firebase.** { *; }

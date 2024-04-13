@@ -1,4 +1,4 @@
-package com.hilguener.gymtracker.ui.login
+package com.hilguener.gymtracker.ui.activity.login
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -17,6 +17,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.hilguener.gymtracker.R
+import com.hilguener.gymtracker.ui.activity.home.MainActivity
 import com.hilguener.gymtracker.ui.theme.GymTrackerTheme
 
 @SuppressLint("CustomSplashScreen")
@@ -36,7 +37,7 @@ class SplashScreen() : ComponentActivity() {
 
         Thread {
             Thread.sleep(2000)
-            startActivity(Intent(this@SplashScreen, LoginActivity::class.java))
+            startActivity(Intent(this@SplashScreen, MainActivity::class.java))
             finish()
         }.start()
     }

@@ -1,13 +1,7 @@
-package com.hilguener.gymtracker.ui.login
+package com.hilguener.gymtracker.ui.activity.login
 
 import android.annotation.SuppressLint
-import android.app.Activity
-import android.content.Intent
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.compose.setContent
-import androidx.activity.result.contract.ActivityResultContracts
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -26,14 +20,17 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -44,163 +41,173 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.hilguener.gymtracker.R
 import com.hilguener.gymtracker.ui.PasswordVisibilityToggleIcon
-import com.hilguener.gymtracker.ui.register.RegisterActivity
-import com.hilguener.gymtracker.ui.theme.GymTrackerTheme
+import com.hilguener.gymtracker.viewmodel.SignInViewModel
+import kotlinx.coroutines.launch
 
-class LoginActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            GymTrackerTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize()
-                ) {
-                    LoginScreen()
-                }
-            }
-        }
-    }
-}
-
+@OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun LoginScreen(modifier: Modifier = Modifier) {
+fun LoginScreen(
+    state: SignInState,
+    modifier: Modifier = Modifier,
+    viewModel: SignInViewModel = hiltViewModel(),
+    onSignInClick: () -> Unit,
+) {
+    val (email, setEmail) = remember { mutableStateOf("") }
+    val (password, setPassword) = remember { mutableStateOf("") }
     val context = LocalContext.current
-    val registerLauncher =
-        rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { }
+    val scope = rememberCoroutineScope()
     Scaffold(modifier = modifier.padding(36.dp)) {
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState()),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(
                 text = stringResource(R.string.app_name),
                 style = MaterialTheme.typography.titleLarge,
                 fontSize = 36.sp,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(text = stringResource(R.string.login_to_your_account))
             Spacer(modifier = Modifier.height(16.dp))
-            LoginEmailField()
+            LoginEmailField(email, setEmail)
             Spacer(modifier = Modifier.height(16.dp))
-            LoginPassword("Enter password")
+            LoginPassword(password, setPassword)
             Spacer(modifier = Modifier.height(16.dp))
             Button(
-                onClick = { }, shape = MaterialTheme.shapes.small, modifier = Modifier.width(280.dp)
+                onClick = { viewModel.loginUser(email, password) },
+                shape = MaterialTheme.shapes.small,
+                modifier = Modifier.width(280.dp),
             ) {
                 Text(
                     text = stringResource(id = R.string.login),
                     style = MaterialTheme.typography.bodyLarge,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
                 )
             }
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = stringResource(R.string.forgot_password),
                 modifier = Modifier.clickable { },
-                textAlign = TextAlign.End
+                textAlign = TextAlign.End,
             )
             Spacer(modifier = Modifier.height(12.dp))
             Text(
                 text = stringResource(R.string.or_sign_in_with),
                 modifier = Modifier.fillMaxWidth(),
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
             )
             Spacer(modifier = Modifier.height(12.dp))
-            ElevatedCard(modifier = Modifier
-                .padding(8.dp)
-                .clickable { }
-                .width(280.dp),
-                shape = MaterialTheme.shapes.small) {
+            ElevatedCard(
+                modifier =
+                    Modifier
+                        .padding(8.dp)
+                        .width(280.dp),
+                onClick = onSignInClick,
+                shape = MaterialTheme.shapes.small,
+            ) {
                 Row(
                     modifier = Modifier.padding(8.dp),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Box(modifier = Modifier.size(25.dp)) {
                         Image(
                             painter = painterResource(id = R.drawable.google),
-                            contentDescription = "google icon"
+                            contentDescription = "google icon",
                         )
                     }
                     Text(
                         text = stringResource(R.string.google),
                         modifier = Modifier.fillMaxWidth(),
-                        textAlign = TextAlign.Center
+                        textAlign = TextAlign.Center,
                     )
                 }
             }
             Spacer(modifier = modifier.height(16.dp))
-            Text(text = stringResource(id = R.string.don_t_have_an_account_sign_up),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable {
-                        val intent = Intent(context, RegisterActivity::class.java)
-                        registerLauncher.launch(intent)
-                        (context as? Activity)?.finish()
+            Text(
+                text = stringResource(id = R.string.don_t_have_an_account_sign_up),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .align(Alignment.End),
+                textAlign = TextAlign.Center,
+            )
+
+            LaunchedEffect(key1 = state.isSuccess) {
+                scope.launch {
+                    if (state.isSuccess?.isNotEmpty() == true) {
+                        val success = state.isSuccess
+                        Toast.makeText(context, "$success", Toast.LENGTH_LONG).show()
                     }
-                    .align(Alignment.End),
-                textAlign = TextAlign.Center)
+                }
+            }
+            LaunchedEffect(key1 = state.isError) {
+                scope.launch {
+                    if (state.isError?.isNotBlank() == true) {
+                        val error = state.isError
+                        Toast.makeText(context, "$error", Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
         }
     }
-
-}
-
-
-@Composable
-fun LoginEmailField() {
-    var email by rememberSaveable { mutableStateOf("") }
-
-    OutlinedTextField(value = email, onValueChange = { email = it }, label = {
-        Text(text = stringResource(R.string.email_address))
-    }, singleLine = true, placeholder = { Text("example@gmail.com") })
 }
 
 @Composable
-fun LoginPassword(text: String) {
-    var password by rememberSaveable { mutableStateOf("") }
-    var passwordVisible by rememberSaveable { mutableStateOf(false) }
-    OutlinedTextField(value = password,
-        onValueChange = { password = it },
-        label = { Text(text) },
-        visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-        trailingIcon = {
-            PasswordVisibilityToggleIcon(showPassword = passwordVisible,
-                onTogglePasswordVisibility = { passwordVisible = !passwordVisible })
+fun LoginEmailField(
+    email: String,
+    onEmailChange: (String) -> Unit,
+) {
+    var emailState by remember { mutableStateOf(TextFieldValue(email)) }
+    OutlinedTextField(
+        value = emailState,
+        onValueChange = {
+            emailState = it
+            onEmailChange(it.text)
         },
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+        label = { Text(text = stringResource(R.string.email_address)) },
+        singleLine = true,
+        placeholder = { Text("example@gmail.com") },
     )
 }
 
-
-@Preview
 @Composable
-fun LoginScreenPreview(modifier: Modifier = Modifier) {
-    GymTrackerTheme(darkTheme = false) {
-        Surface {
-            LoginScreen()
-        }
-    }
-}
+fun LoginPassword(
+    password: String,
+    onPasswordChange: (String) -> Unit,
+) {
+    var passwordState by remember { mutableStateOf(TextFieldValue(password)) }
+    var passwordVisible by rememberSaveable { mutableStateOf(false) }
 
-@Preview
-@Composable
-fun LoginScreenDarkPreview(modifier: Modifier = Modifier) {
-
-    GymTrackerTheme(darkTheme = true) {
-        Surface {
-            LoginScreen()
-        }
-    }
+    OutlinedTextField(
+        value = passwordState,
+        onValueChange = {
+            passwordState = it
+            onPasswordChange(it.text)
+        },
+        singleLine = true,
+        label = { Text("Enter your password") },
+        visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+        trailingIcon = {
+            PasswordVisibilityToggleIcon(
+                showPassword = passwordVisible,
+                onTogglePasswordVisibility = { passwordVisible = !passwordVisible },
+            )
+        },
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+    )
 }

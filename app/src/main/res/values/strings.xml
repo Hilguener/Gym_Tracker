@@ -9,4 +9,6 @@
     <string name="google">Login with google</string>
     <string name="don_t_have_an_account_sign_up">don\'t have an account? Sign up!</string>
     <string name="already_have_an_account_login">already have an account? Login!</string>
+    <string name="default_web_client_id">700288632026-rnm1dka5d5gqd6bc1tqcf7rej4b3v1jm.apps.googleusercontent.com</string>
+    <string name="enter_password">Enter password</string>
 </resources>

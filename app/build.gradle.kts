@@ -2,7 +2,9 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("com.google.gms.google-services")
-
+    id("org.jlleitschuh.gradle.ktlint") version "12.1.0"
+    id("dagger.hilt.android.plugin")
+    id("kotlin-kapt")
 }
 
 android {
@@ -27,9 +29,20 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
+    }
+    ktlint {
+        version.set("1.1.0")
+        debug.set(true)
+        enableExperimentalRules.set(true)
+        additionalEditorconfig.set(
+            mapOf(
+                "max_line_length" to "off",
+                "ktlint_function_naming_ignore_when_annotated_with" to "Composable",
+            ),
+        )
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -63,6 +76,19 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
+    // Dagger-Hilt
+    implementation(libs.hilt.android)
+    implementation(libs.firebase.auth)
+    implementation(libs.play.services.auth)
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.firebase.firestore)
+    kapt(libs.hilt.android.compiler)
+    implementation("androidx.credentials:credentials:1.3.0-alpha02")
+    implementation("androidx.credentials:credentials-play-services-auth:1.3.0-alpha02")
+    kapt(libs.androidx.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
