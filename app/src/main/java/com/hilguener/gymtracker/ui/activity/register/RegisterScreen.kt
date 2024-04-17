@@ -41,6 +41,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.hilguener.gymtracker.R
 import com.hilguener.gymtracker.ui.PasswordVisibilityToggleIcon
 import com.hilguener.gymtracker.ui.theme.GymTrackerTheme
@@ -50,6 +51,7 @@ import kotlinx.coroutines.launch
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun RegisterScreen(
+    navController: NavController,
     modifier: Modifier = Modifier,
     viewModel: SignUpViewModel = hiltViewModel(),
 ) {
@@ -127,6 +129,10 @@ fun RegisterScreen(
                     Modifier
                         .fillMaxWidth()
                         .clickable {
+                            navController.popBackStack(
+                                route = context.getString(R.string.login_screen),
+                                inclusive = false,
+                            )
                         }
                         .align(Alignment.End),
                 textAlign = TextAlign.Center,
@@ -137,6 +143,7 @@ fun RegisterScreen(
                     if (state.value?.isSuccess?.isNotEmpty() == true) {
                         val success = state.value?.isSuccess
                         Toast.makeText(context, "$success", Toast.LENGTH_LONG).show()
+                        navController.navigate(context.getString(R.string.home_screen))
                     }
                 }
             }
@@ -157,7 +164,7 @@ fun RegisterScreen(
 fun RegisterScreenPreview(modifier: Modifier = Modifier) {
     GymTrackerTheme(darkTheme = false) {
         Surface {
-            RegisterScreen()
+//            RegisterScreen()
         }
     }
 }
@@ -167,7 +174,7 @@ fun RegisterScreenPreview(modifier: Modifier = Modifier) {
 fun RegisterScreenDarkPreview(modifier: Modifier = Modifier) {
     GymTrackerTheme(darkTheme = true) {
         Surface {
-            RegisterScreen()
+//            RegisterScreen()
         }
     }
 }

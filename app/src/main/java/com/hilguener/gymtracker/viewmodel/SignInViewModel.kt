@@ -31,10 +31,6 @@ class SignInViewModel
             }
         }
 
-        fun resetState() {
-            _signInState.update { SignInState() }
-        }
-
         fun loginUser(
             email: String,
             password: String,

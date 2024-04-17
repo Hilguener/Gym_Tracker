@@ -40,7 +40,7 @@
 -keep class com.gymtracker.clickhandler.** { *; }
 
 # Mantenha a classe de inicialização do aplicativo
--keep class com.hilguener.gymtracker.MyApplication{ *; }
+-keep class com.hilguener.gymtracker.MainApplication{ *; }
 
 # Mantenha as bibliotecas de terceiros
 -keep class com.squareup.picasso.** { *; }
@@ -53,5 +53,6 @@
 # Mantenha as anotações personalizadas
 -keep @interface com.hilguener.gymtracker.customannotation.**
 
-# Evite a obfuscação das classes de serviços do Firebase
--keep class com.google.firebase.** { *; }
+
+
+

@@ -1,0 +1,46 @@
+
+<resources>
+    <string name="app_name">Gym Tracker</string>
+    <string name="login_to_your_account">Faça login na sua conta</string>
+    <string name="email_address">Endereço de e-mail</string>
+    <string name="password">Senha</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Esqueceu a senha?</string>
+    <string name="or_sign_in_with">ou</string>
+    <string name="google">Login com Google</string>
+    <string name="don_t_have_an_account_sign_up">Não tem uma conta? Cadastre-se!</string>
+    <string name="already_have_an_account_login">Já tem uma conta? Faça login!</string>
+    <string name="default_web_client_id">700288632026-rnm1dka5d5gqd6bc1tqcf7rej4b3v1jm.apps.googleusercontent.com</string>
+    <string name="enter_password">Digite a senha</string>
+    <string name="workout">Treinos</string>
+    <string name="workout_name">Nome do treino</string>
+    <string name="new_workout">Novo treino</string>
+    <string name="workout_description">Descrição do treino</string>
+    <string name="workout_date">Escolher data</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancelar</string>
+    <string name="confirm">Confirmar</string>
+    <string name="no_internet_connection">Sem conexão com a internet</string>
+    <string name="refresh">Atualizar</string>
+    <string name="close">Fechar</string>
+    <string name="no_description">Sem descrição</string>
+    <string name="delete_workout">Excluir treino</string>
+    <string name="are_you_sure_you_want_to_delete_this_workout">Tem certeza de que deseja excluir este treino?</string>
+    <string name="success">Sucesso</string>
+    <string name="training_name_must_not_be_blank">O nome do treino não pode ficar em branco</string>
+    <string name="no_workouts_available">Nenhum treino disponível</string>
+    <string name="sign_in_successful">Login bem-sucedido</string>
+    <string name="back">voltar</string>
+    <string name="save_new_exercises">Salvar novos exercícios</string>
+    <string name="list_of_exercises">Lista de exercícios</string>
+    <string name="new_exercise">Novo exercício</string>
+    <string name="exercise_name">Nome do exercício</string>
+    <string name="no_exercises_available">Nenhum exercício disponível</string>
+    <string name="enter_your_password">Digite sua senha</string>
+    <string name="save">Salvar</string>
+    <string name="edit_workout_routine">Editar rotina de exercícios</string>
+    <string name="select_image">Selecionar imagem</string>
+    <string name="observations">Observações</string>
+    <string name="edit_exercise">Editar exercício</string>
+
+</resources>

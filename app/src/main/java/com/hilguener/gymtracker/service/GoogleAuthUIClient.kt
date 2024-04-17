@@ -1,4 +1,4 @@
-package com.hilguener.gymtracker.ui.activity
+package com.hilguener.gymtracker.service
 
 import android.content.Context
 import android.content.Intent
@@ -61,25 +61,6 @@ class GoogleAuthUIClient(
             )
         }
     }
-
-    suspend fun signOut() {
-        try {
-            oneTapClient.signOut().await()
-            auth.signOut()
-        } catch (e: Exception) {
-            e.printStackTrace()
-            if (e is CancellationException) throw e
-        }
-    }
-
-    fun getSignedUser(): UserData? =
-        auth.currentUser?.run {
-            UserData(
-                userId = uid,
-                userName = displayName,
-                profilePictureUrl = photoUrl?.toString(),
-            )
-        }
 
     private fun buildSignInRequest(): BeginSignInRequest {
         return BeginSignInRequest.builder().setGoogleIdTokenRequestOptions(
