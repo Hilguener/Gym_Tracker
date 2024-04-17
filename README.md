@@ -51,5 +51,9 @@ segura para os entusiastas do fitness acompanharem seu progresso na academia.
 
 ### Ktlint:
 
--Ferramenta para garantir a conformidade com padrões de codificação Kotlin, promovendo consistência e
+- Ferramenta para garantir a conformidade com padrões de codificação Kotlin, promovendo consistência e
 legibilidade no código fonte.
+
+## Contribuições:
+
+- Contribuições são bem-vindas! Se você tem ideias para melhorar o Gym Tracker ou encontrou algum problema, sinta-se à vontade para abrir uma issue ou enviar um pull request no repositório do GitHub.
