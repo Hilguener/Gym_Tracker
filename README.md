@@ -54,6 +54,10 @@ segura para os entusiastas do fitness acompanharem seu progresso na academia.
 - Ferramenta para garantir a conformidade com padrões de codificação Kotlin, promovendo consistência e
 legibilidade no código fonte.
 
+### Material Design:
+
+- O Gym Tracker segue os princípios e diretrizes do Material Design, uma abordagem de design amplamente reconhecida e adotada pela comunidade Android para criar interfaces de usuário consistentes, visualmente atraentes e intuitivas.
+
 ## Como Executar o Projeto
 - Clone este repositório em sua máquina local.
 - Abra o projeto em seu ambiente de desenvolvimento preferido (Android Studio, IntelliJ IDEA, etc.).
