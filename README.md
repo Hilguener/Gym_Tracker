@@ -49,7 +49,39 @@ segura para os entusiastas do fitness acompanharem seu progresso na academia.
 - Armazenamento de dados em tempo real na nuvem, garantindo sincronização instantânea entre
   dispositivos e uma experiência de usuário sem interrupções.
 
+### Suporte em dois idiomas
+
+- O Gym Tracker oferece suporte em inglês e português para uma experiência completa de usuário.
+  Acompanhe sua rotina de exercícios, faça observações e edite seus exercícios facilmente em ambos
+  os idiomas.
+
 ### Ktlint:
 
--Ferramenta para garantir a conformidade com padrões de codificação Kotlin, promovendo consistência e
-legibilidade no código fonte.
+- Ferramenta para garantir a conformidade com padrões de codificação Kotlin, promovendo consistência
+  e
+  legibilidade no código fonte.
+
+### Material Design:
+
+- O Gym Tracker segue os princípios e diretrizes do Material Design, uma abordagem de design
+  amplamente reconhecida e adotada pela comunidade Android para criar interfaces de usuário
+  consistentes, visualmente atraentes e intuitivas.
+
+## Como Executar o Projeto
+
+- Clone este repositório em sua máquina local.
+- Abra o projeto em seu ambiente de desenvolvimento preferido (Android Studio, IntelliJ IDEA, etc.).
+- Execute o aplicativo em um emulador Android ou dispositivo físico.
+
+## Contribuição
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue caso encontre algum problema
+ou para enviar um pull request com melhorias no código.
+
+## Autor
+
+Este aplicativo foi desenvolvido por Hilguener.
+
+## Licença
+
+Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE para mais detalhes.

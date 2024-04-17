@@ -17,10 +17,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.auth.api.identity.Identity
-import com.hilguener.gymtracker.ui.activity.GoogleAuthUIClient
+import com.hilguener.gymtracker.R
+import com.hilguener.gymtracker.service.GoogleAuthUIClient
+import com.hilguener.gymtracker.ui.activity.home.ExercisesScreen
 import com.hilguener.gymtracker.ui.activity.home.HomeScreen
 import com.hilguener.gymtracker.ui.activity.login.LoginScreen
 import com.hilguener.gymtracker.ui.activity.register.RegisterScreen
+import com.hilguener.gymtracker.viewmodel.ExercisesViewModel
+import com.hilguener.gymtracker.viewmodel.HomeScreenViewModel
 import com.hilguener.gymtracker.viewmodel.SignInViewModel
 import kotlinx.coroutines.launch
 
@@ -58,13 +62,17 @@ fun NavigationGraph(
 
             LaunchedEffect(key1 = state.isSignInSuccessful) {
                 if (state.isSignInSuccessful) {
-                    Toast.makeText(context, "Sign in successful", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        context.getString(R.string.sign_in_successful),
+                        Toast.LENGTH_SHORT,
+                    ).show()
                     navController.navigate(Screens.HomeScreen.route) {
                         popUpTo(Screens.LoginScreen.route) { inclusive = true }
                     }
                 }
             }
-            LoginScreen(state, onSignInClick = {
+            LoginScreen(navController, state, onSignInClick = {
                 scope.launch {
                     val signInIntent = googleAuthUIClient.signIn()
                     launcher.launch(
@@ -76,10 +84,23 @@ fun NavigationGraph(
             })
         }
         composable(route = Screens.RegisterScreen.route) {
-            RegisterScreen()
+            RegisterScreen(navController)
         }
         composable(route = Screens.HomeScreen.route) {
-            HomeScreen()
+            val viewModel = hiltViewModel<HomeScreenViewModel>()
+            HomeScreen(navController, viewModel)
+        }
+        composable("${Screens.ExercisesScreen.route}/{workoutId}/{workoutName}") {
+            val workoutId = it.arguments?.getString("workoutId")
+            val workoutName = it.arguments?.getString("workoutName")
+
+            val viewModel = hiltViewModel<ExercisesViewModel>()
+            ExercisesScreen(
+                viewModel,
+                workoutId ?: "",
+                workoutName ?: "",
+                navController = navController,
+            )
         }
     }
 }

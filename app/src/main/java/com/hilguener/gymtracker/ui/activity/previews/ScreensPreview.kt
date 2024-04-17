@@ -4,7 +4,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.hilguener.gymtracker.ui.activity.register.RegisterScreen
 import com.hilguener.gymtracker.ui.theme.GymTrackerTheme
 
 @Preview
@@ -12,7 +11,7 @@ import com.hilguener.gymtracker.ui.theme.GymTrackerTheme
 fun RegisterScreenPreview(modifier: Modifier = Modifier) {
     GymTrackerTheme(darkTheme = false) {
         Surface {
-            RegisterScreen()
+//            RegisterScreen()
         }
     }
 }
@@ -22,7 +21,7 @@ fun RegisterScreenPreview(modifier: Modifier = Modifier) {
 fun RegisterScreenDarkPreview(modifier: Modifier = Modifier) {
     GymTrackerTheme(darkTheme = true) {
         Surface {
-            RegisterScreen()
+//            RegisterScreen()
         }
     }
 }

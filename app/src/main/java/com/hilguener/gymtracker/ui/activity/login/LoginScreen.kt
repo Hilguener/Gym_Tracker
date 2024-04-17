@@ -47,6 +47,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.hilguener.gymtracker.R
 import com.hilguener.gymtracker.ui.PasswordVisibilityToggleIcon
 import com.hilguener.gymtracker.viewmodel.SignInViewModel
@@ -56,6 +57,7 @@ import kotlinx.coroutines.launch
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun LoginScreen(
+    navController: NavController,
     state: SignInState,
     modifier: Modifier = Modifier,
     viewModel: SignInViewModel = hiltViewModel(),
@@ -101,12 +103,6 @@ fun LoginScreen(
             }
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = stringResource(R.string.forgot_password),
-                modifier = Modifier.clickable { },
-                textAlign = TextAlign.End,
-            )
-            Spacer(modifier = Modifier.height(12.dp))
-            Text(
                 text = stringResource(R.string.or_sign_in_with),
                 modifier = Modifier.fillMaxWidth(),
                 textAlign = TextAlign.Center,
@@ -137,13 +133,15 @@ fun LoginScreen(
                     )
                 }
             }
-            Spacer(modifier = modifier.height(16.dp))
+            Spacer(modifier = modifier.height(35.dp))
             Text(
-                text = stringResource(id = R.string.don_t_have_an_account_sign_up),
+                text = stringResource(R.string.don_t_have_an_account_sign_up),
                 modifier =
                     Modifier
                         .fillMaxWidth()
-                        .align(Alignment.End),
+                        .clickable {
+                            navController.navigate(context.getString(R.string.register_screen))
+                        },
                 textAlign = TextAlign.Center,
             )
 
@@ -181,7 +179,6 @@ fun LoginEmailField(
         },
         label = { Text(text = stringResource(R.string.email_address)) },
         singleLine = true,
-        placeholder = { Text("example@gmail.com") },
     )
 }
 
@@ -200,7 +197,7 @@ fun LoginPassword(
             onPasswordChange(it.text)
         },
         singleLine = true,
-        label = { Text("Enter your password") },
+        label = { Text(stringResource(R.string.enter_your_password)) },
         visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
         trailingIcon = {
             PasswordVisibilityToggleIcon(
