@@ -86,23 +86,3 @@ Este aplicativo foi desenvolvido por Hilguener.
 
 Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE para mais detalhes.
 
-- Ferramenta para garantir a conformidade com padrões de codificação Kotlin, promovendo consistência e
-legibilidade no código fonte.
-
-### Material Design:
-
-- O Gym Tracker segue os princípios e diretrizes do Material Design, uma abordagem de design amplamente reconhecida e adotada pela comunidade Android para criar interfaces de usuário consistentes, visualmente atraentes e intuitivas.
-
-## Como Executar o Projeto
-- Clone este repositório em sua máquina local.
-- Abra o projeto em seu ambiente de desenvolvimento preferido (Android Studio, IntelliJ IDEA, etc.).
-- Execute o aplicativo em um emulador Android ou dispositivo físico. 
-
-## Contribuição
-Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue caso encontre algum problema ou para enviar um pull request com melhorias no código.
-## Autor
-Este aplicativo foi desenvolvido por Hilguener.
-
-## Licença
-Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE para mais detalhes.
-
