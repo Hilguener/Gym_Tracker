@@ -54,6 +54,15 @@ segura para os entusiastas do fitness acompanharem seu progresso na academia.
 - Ferramenta para garantir a conformidade com padrões de codificação Kotlin, promovendo consistência e
 legibilidade no código fonte.
 
-## Contribuições:
+## Como Executar o Projeto
+- Clone este repositório em sua máquina local.
+- Abra o projeto em seu ambiente de desenvolvimento preferido (Android Studio, IntelliJ IDEA, etc.).
+- Execute o aplicativo em um emulador Android ou dispositivo físico. 
 
-- Contribuições são bem-vindas! Se você tem ideias para melhorar o Gym Tracker ou encontrou algum problema, sinta-se à vontade para abrir uma issue ou enviar um pull request no repositório do GitHub.
+## Contribuição
+Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue caso encontre algum problema ou para enviar um pull request com melhorias no código.
+## Autor
+Este aplicativo foi desenvolvido por Hilguener.
+
+## Licença
+Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE para mais detalhes.
